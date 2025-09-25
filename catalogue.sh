@@ -55,7 +55,7 @@ fi
 
 
 mkdir -p /app 
-curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip 
+curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip &>>$LOG_FILE
 cd /app 
 rm -rf /add/*
 unzip /tmp/catalogue.zip
@@ -67,7 +67,8 @@ systemctl enable catalogue
 VALIDATE $? "enable catalogue"
 systemctl start catalogue
 VALIDATE $? "start catalogue"
-cp mongo.repo /etc/yum.repos.d/mongo.repo
+cp $SCRIPT_DIRmongo.repo /etc/yum.repos.d/mongo.repo
+
 
 dnf install mongodb-mongosh -y &>>LOG_FILE
 VALIDATE $? "install mongodb"
