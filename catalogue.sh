@@ -68,7 +68,7 @@ systemctl enable catalogue
 VALIDATE $? "enable catalogue"
 systemctl start catalogue
 VALIDATE $? "start catalogue"
-cp $SCRIPT_DIRmongo.repo /etc/yum.repos.d/mongo.repo
+cp $SCRIPT_DIR/mongo.repo /etc/yum.repos.d/mongo.repo
 
 
 dnf install mongodb-mongosh -y &>>LOG_FILE
