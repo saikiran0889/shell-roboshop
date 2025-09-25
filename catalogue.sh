@@ -57,9 +57,9 @@ fi
 mkdir -p /app 
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip &>>$LOG_FILE
 cd /app 
-rm -rf /add/* &>>$LOG_FILE
-unzip /tmp/catalogue.zip &>>$LOG_FILE
-VALIDATE $? "Removing existing code"
+rm -rf /app/*
+unzip /tmp/catalogue.zip
+
 npm install &>>LOG_FILE
 cp $SCRIPT_DIR/catalogue.service /etc/systemd/system/catalogue.service
 systemctl daemon-reload
