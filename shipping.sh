@@ -43,8 +43,8 @@ curl -L -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shippin
 cd /app 
 rm -rf /app/*
 unzip -o /tmp/shipping.zip &>>$LOG_FILE
-mvn clean package 
-mv target/shipping-1.0.jar shipping.jar 
+mvn clean package &>>$LOG_FILE
+mv target/shipping-1.0.jar shipping.jar &>>$LOG_FILE
 
 cp $SCRIPT_DIR/shipping.service /etc/systemd/system/shipping.service &>>$LOG_FILE
 
@@ -54,7 +54,7 @@ systemctl enable shipping &>>$LOG_FILE
 VALIDATE $? "enabled shipping"
 systemctl start shipping &>>$LOG_FILE
 VALIDATE $? "started shipping"
-dnf install mysql -y 
+dnf install mysql -y &>>$LOG_FILE
 VALIDATE $? "installed mysql" &>>$LOG_FILE
 
 mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/db/schema.sql
