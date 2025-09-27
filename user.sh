@@ -55,15 +55,9 @@ else
     echo -e "User already exist ... $Y SKIPPING $N"
 fi
 
-if [ $? -ne 0 ]; then
-    mkdir /app
-else
-    echo -e "app directory already exixt $Y SKIPPING $N"
-fi
 
 
-
-mkdir /app >>$LOG_FILE
+mkdir -p /app >>$LOG_FILE
 VALIDATE $? "making the app folder"
 curl -L -o /tmp/user.zip https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip &>>$LOG_FILE
 VALIDATE $? "download nodejs"
