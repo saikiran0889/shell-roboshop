@@ -40,20 +40,20 @@ VALIDATE $? "install nodejs"
 # id roboshop &>>$LOG_FILE
 # if[ $? -ne 0 ]; then
 
-# useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
-# VALIDATE $? "user permission"
-# else 
-# echo "user already exist"
-# fi
+useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
+VALIDATE $? "user permission"
+else 
+echo "user already exist"
+fi
 
 
 #id roboshop &>>$LOG_FILE
-if [ $? -ne 0 ]; then
-    useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$LOG_FILE
-    VALIDATE $? "Creating system user"
-else
-    echo -e "User already exist ... $Y SKIPPING $N"
-fi
+# if [ $? -ne 0 ]; then
+#     useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$LOG_FILE
+#     VALIDATE $? "Creating system user"
+# else
+#     echo -e "User already exist ... $Y SKIPPING $N"
+# fi
 
 
 
