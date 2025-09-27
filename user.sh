@@ -32,7 +32,7 @@ VALIDATE(){ # functions receive inputs through args just like shell script args
 
 dnf module disable nodejs -y &>>$LOG_FILE
 VALIDATE $? "disable nodejs"
-dnf module enable nodejs:20 -y >>$LOG_FILE
+dnf module enable nodejs:20 -y &>>$LOG_FILE
 VALIDATE $? "enable nodejs"
 dnf install nodejs -y >>$LOG_FILE
 VALIDATE $? "install nodejs"
@@ -40,7 +40,7 @@ useradd --system --home /app --shell /sbin/nologin --comment "roboshop system us
 VALIDATE $? "user permission"
 mkdir /app >>$LOG_FILE
 VALIDATE $? "making the app folder"
-curl -L -o /tmp/user.zip https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip >>$LOG_FILE
+curl -L -o /tmp/user.zip https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip &>>$LOG_FILE
 VALIDATE $? "download nodejs"
 cd /app 
 unzip /tmp/user.zip 
@@ -48,7 +48,7 @@ VALIDATE $? "unzip the code"
 
 npm install >>$LOG_FILE
 VALIDATE $? "install packages"
-cp $SCRIPT_NAME/user.service /etc/systemd/system/user.service >>$LOG_FILE
+cp $SCRIPT_NAME/user.service /etc/systemd/system/user.service &>>$LOG_FILE
 systemctl daemon-reload >>$LOG_FILE
 systemctl enable user >>$LOG_FILE
 VALIDATE $? "enable user service"
