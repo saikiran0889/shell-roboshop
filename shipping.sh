@@ -33,9 +33,10 @@ VALIDATE(){ # functions receive inputs through args just like shell script args
 dnf install maven -y &>>$LOG_FILE
 VALIDATE $? "installed mavan"
 if [ $? -ne 0 ]; then
-useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$LOG_FILE
-else
-VALIDATE $? "User already exist"
+useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
+VALIDATE $? "user permission"
+else 
+echo "user already exist"
 fi
 mkdir -p /app 
 curl -L -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping-v3.zip &>>$LOG_FILE
