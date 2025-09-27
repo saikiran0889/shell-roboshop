@@ -62,7 +62,7 @@ VALIDATE $? "making the app folder"
 curl -L -o /tmp/user.zip https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip &>>$LOG_FILE
 VALIDATE $? "download nodejs"
 cd /app 
-unzip /tmp/user.zip 
+unzip -o /tmp/user.zip 
 VALIDATE $? "unzip the code"
 
 npm install >>$LOG_FILE
