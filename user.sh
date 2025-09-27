@@ -55,6 +55,12 @@ else
     echo -e "User already exist ... $Y SKIPPING $N"
 fi
 
+if [ $? -ne 0 ]; then
+    mkdir /app
+else
+    echo -e "app directory already exixt $Y SKIPPING $N"
+fi
+
 
 
 mkdir /app >>$LOG_FILE
