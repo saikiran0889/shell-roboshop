@@ -43,7 +43,7 @@ else
 echo "user already exist"
 fi
 mkdir -p /app 
-curl -L -o /tmp/cart.zip https://roboshop-artifacts.s3.amazonaws.com/cart-v3.zip
+curl -L -o /tmp/cart.zip https://roboshop-artifacts.s3.amazonaws.com/cart-v3.zip &>>$LOG_FILE
 cd /app 
 unzip -o /tmp/cart.zip &>>$LOG_FILE
 npm install &>>$LOG_FILE
