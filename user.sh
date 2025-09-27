@@ -36,8 +36,14 @@ dnf module enable nodejs:20 -y &>>$LOG_FILE
 VALIDATE $? "enable nodejs"
 dnf install nodejs -y >>$LOG_FILE
 VALIDATE $? "install nodejs"
+
+if[ $? -ne 0 ]; then
+
 useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
 VALIDATE $? "user permission"
+else 
+echo "user already exist"
+fi
 mkdir /app >>$LOG_FILE
 VALIDATE $? "making the app folder"
 curl -L -o /tmp/user.zip https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip &>>$LOG_FILE
