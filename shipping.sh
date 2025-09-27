@@ -57,8 +57,8 @@ VALIDATE $? "started shipping"
 dnf install mysql -y &>>$LOG_FILE
 VALIDATE $? "installed mysql" &>>$LOG_FILE
 
-mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/db/schema.sql
-mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/db/app-user.sql 
-mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/db/master-data.sql
+mysql -h mysql.awsdevops2025.fun -uroot -pRoboShop@1 < /app/db/schema.sql
+mysql -h mysql.awsdevops2025.fun -uroot -pRoboShop@1 < /app/db/app-user.sql 
+mysql -h mysql.awsdevops2025.fun -uroot -pRoboShop@1 < /app/db/master-data.sql
 systemctl restart shipping &>>$LOG_FILE
 VALIDATE $? "restarted shipping" 
