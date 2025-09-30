@@ -4,7 +4,7 @@ set -euo pipefail
 trap 'echo "this is error messag $LINENO, command is $BASH_COMMAND"'  ERR
 
 USERID=$(id -u)
-R="\e[31m"
+R="\e[31m" 
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
